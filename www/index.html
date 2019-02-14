@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Work Time Hours Calculator</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+        $(function(){
+            $("button").click(function(){
+                var check1, check2, check3, unit, hour, minute;
+                // Get the value of the input field with id="numb"
+                unit = parseInt($("#unit").val());
+                hour = parseInt($("#hour").val());
+                minute = parseInt($("#minute").val());
+                check1 = fieldCheck('unit');
+                check2 = fieldCheck('hour');
+                check3 = fieldCheck('minute');
+                // If x is Not a Number or less than one or greater than 10
+                if (check1 == "ok" && check2 == "ok" && check3 == "ok" && unit > 0)
+                {
+                    var day = ~~(minute / (60 * unit));// calculate how many days are in minutes
+                    var rminute = minute % (60 * unit);//get the remainder minutes to get the decimal
+                    var rhour =  ~~(rminute / 60);//get the hours in the minutes
+                    var dminute = ((rminute % 60)/60)/unit;//convert the remainder into decimal
+                    hour = hour + rhour;//add the minute hours with the hours
+                    day = ~~(hour / unit) + day;// convert the hours into days
+                    var rday = hour % unit;//get the remainder from the total days for the decimal
+                    var dec = rday / unit;//convert remainder into a decimal
+                    var total = day + dec + dminute;// add the total day + day remainders and the minute remainders
+                    text = "Input OK, you've worked for: " + total + " days.";
+                } else {
+                    text = "Input invalid, make sure to submit all the fields above. Make sure the days worth is more than 0.";
+                }
+                $("#result").text(text);
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <style>
+        h4{
+            text-align: center;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 13px 20px;
+            margin: 13px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        div[id=formtext] {
+            width: 100%;
+            padding: 13px 20px;
+            margin: 13px 0;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        div[id=result] {
+            width: 100%;
+            padding: 13px 20px;
+            margin: 13px 0;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        div[id=borderf]{
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            border-top-style: solid;
+            border-right-style: solid;
+            border-bottom-style: solid;
+            border-left-style: solid;
+        }
+        </style>
+        <div class="modal-body">
+            <h4>Day Calculator Bootstrap/JQuery/JS/CSS</h4>
+            <div>
+                <div class="row">
+                    <div class="col-sm-6"><div id="formtext">Hours Per Day</div></div>
+                    <div class="col-sm-6"><input type="text" placeholder="7" name="unit" id="unit"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6"><div id="formtext">Hours Total</div></div>
+                    <div class="col-sm-6"><input type="text" placeholder="Hours worked" name="hour" id="hour"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6"><div id="formtext">Minutes Total</div></div>
+                    <div class="col-sm-6"><input type="text" placeholder="Minutes worked" name="minute" id="minute"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12"><button type="button" class="btn btn-info btn-block" id="btn">Submit</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12"><div id="result" style="text-align: center">Total Days</div></div>
+                </div>
+            </div>
+        </div>
+        <script>
+        function fieldCheck(input) {
+            var x, text;
+
+            // Get the value of the input field with id="numb"
+            x = $('#' + input).val();
+
+            // If x is Not a Number or less than one or greater than 10
+            if (isNaN(x)) {
+                // text = "Input not valid";
+                return "invalid";
+            } else if (x == "") {
+                // text = "Field is empty";
+                return "empty"
+            } else {
+                // text = "Input OK";
+                return "ok";
+            }
+        }
+
+        </script>
+    </body>
+</html>
