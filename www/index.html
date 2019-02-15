@@ -13,9 +13,9 @@
             $("button").click(function(){
                 var check1, check2, check3, unit, hour, minute;
                 // Get the value of the input field with id="numb"
-                unit = parseInt($("#unit").val());
-                hour = parseInt($("#hour").val());
-                minute = parseInt($("#minute").val());
+                unit = parseFloat($("#unit").val());
+                hour = parseFloat($("#hour").val());
+                minute = parseFloat($("#minute").val());
                 check1 = fieldCheck('unit');
                 check2 = fieldCheck('hour');
                 check3 = fieldCheck('minute');
@@ -85,15 +85,15 @@
             <div>
                 <div class="row">
                     <div class="col-sm-6"><div id="formtext">Hours Per Day</div></div>
-                    <div class="col-sm-6"><input type="text" placeholder="7" name="unit" id="unit"></div>
+                    <div class="col-sm-6"><input type="number" placeholder="7" name="unit" id="unit"></div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6"><div id="formtext">Hours Total</div></div>
-                    <div class="col-sm-6"><input type="text" placeholder="Hours worked" name="hour" id="hour"></div>
+                    <div class="col-sm-6"><input type="number" placeholder="Hours worked" name="hour" id="hour"></div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6"><div id="formtext">Minutes Total</div></div>
-                    <div class="col-sm-6"><input type="text" placeholder="Minutes worked" name="minute" id="minute"></div>
+                    <div class="col-sm-6"><input type="number" placeholder="Minutes worked" name="minute" id="minute"></div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12"><button type="button" class="btn btn-info btn-block" id="btn">Submit</button></div>
